@@ -1,11 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Любовь</title>
+    <style>
+        /* إعداد التنسيق العام */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0e0d8;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        h1 {
+            color: #ff477e;
+        }
+
+        button {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #ff1e63;
+        }
+
+        /* إخفاء الأقسام */
+        #second-screen, #heart-screen {
+            display: none;
+        }
+
+        /* تصميم القلب */
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: heartBeat 1s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 50px;
+        }
+
+        /* حركة نبض القلب */
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1) rotate(-45deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(-45deg);
+            }
+        }
+
+        .p-love {
+            position: absolute;
+            top: 59%;
+            right: 50%;
+            transform: translateX(50%);
+            color: #ff0000;
+        }
+    </style>
 </head>
 <body>
-    <h1>Елена ЖДИ....</h1>
+    <!-- الشاشة الأولى -->
+    <div id="main-screen">
+        <h1>Если ты любишь меня, нажми "Да"</h1>
+        <button id="no">Нет</button>
+        <button id="yes">Да</button>
+    </div>
+
+    <!-- الشاشة الثانية -->
+    <div id="second-screen" style="display: none;">
+        <h1>Если ты Елена, нажми "Да"</h1>
+        <button id="yes-elena">Да</button>
+    </div>
+
+    <!-- شاشة القلب -->
+    <div id="heart-screen" style="display: none;">
+        <div class="heart"></div>
+        <p class="p-love">Я тоже тебя люблю!</p>
+    </div>
+
+    <script>
+        // عندما يضغط المستخدم "Нет"
+        document.getElementById("no").addEventListener("click", () => {
+            alert('Нажми "Да"!');
+        });
+
+        // عندما يضغط المستخدم "Да" في الشاشة الأولى
+        document.getElementById("yes").addEventListener("click", () => {
+            document.getElementById("main-screen").style.display = "none";
+            document.getElementById("second-screen").style.display = "block";
+        });
+
+        // عندما يضغط المستخدم "Да" في الشاشة الثانية
+        document.getElementById("yes-elena").addEventListener("click", () => {
+            document.getElementById("second-screen").style.display = "none";
+            document.getElementById("heart-screen").style.display = "block";
+        });
+    </script>
 </body>
 </html>
